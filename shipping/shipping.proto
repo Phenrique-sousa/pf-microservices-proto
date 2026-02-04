@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "github.com/phenrique-sousa/pf-microservices-proto/golang/shipping";
+
+message ShippingItem {
+  string product_code = 1;
+  int32 quantity = 2;
+}
+
+message CreateShippingRequest {
+  int64 order_id = 1;
+  repeated ShippingItem items = 2;
+}
+
+message CreateShippingResponse {
+  int32 delivery_days = 1;
+}
+
+service Shipping {
+  rpc Create(CreateShippingRequest) returns (CreateShippingResponse) {}
+}
